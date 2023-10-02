@@ -1,5 +1,6 @@
 export type ProductModelType = {
   id: string,
-  active: boolean,
-  code: string,
+  name: string,
+  description: string,
+  price: number,
 };

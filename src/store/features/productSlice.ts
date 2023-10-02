@@ -3,7 +3,7 @@ import {
   ErrorResponseType,
   ProductModelType,
 } from '../../types';
-import { productsIndexService } from '../services';
+import { productsIndexService } from '../../services';
 
 
 // Define a type for the slice state
