@@ -1,28 +1,44 @@
-import React, { useEffect, useRef } from 'react';
-import './Home.page.scss';
-import { Header, Product } from "../../components";
-import {
-  productIndexAction,
-  useAppDispatch,
-  useAppSelector
-} from "../../store";
+import React, { useEffect } from "react";
+import "./Home.page.scss";
+import { Header, Product, ProductGrid } from "../../components";
+import { fetchProducts, useAppDispatch, useAppSelector } from "../../store";
 
 export const HomePage = () => {
-  const ref = useRef(null);
   const dispatch = useAppDispatch();
-  
-  const {products, isIndexFetching} = useAppSelector(store => store.product)
+
+  const { products, loading, fetchError } = useAppSelector(
+    (store) => store.product
+  );
 
   useEffect(() => {
-    dispatch(productIndexAction());
+    dispatch(fetchProducts());
   }, [dispatch]);
+
+  const renderContent = () => {
+    if (fetchError) {
+      return <div className="ErrorWrapper">
+        <p>Error {fetchError.message}</p>
+          {fetchError.errors && <>
+          <p>Fields with errors</p>
+          <ul>
+            {fetchError.errors.map(e => <li key={`error-field-${e.field}`}>{e.field}: {e.message}</li>)}
+          </ul>
+          </>}
+        </div>;
+    }
+
+    if (loading) {
+      return <p>Loading</p>;
+    }
+
+    return <ProductGrid products={products} />;
+  };
 
   return (
     <div className="HomePage">
-      <main ref={ref}>
-        <Header/>
-        {isIndexFetching && <p>Loading</p>}
-        {!isIndexFetching && products.map((product) => <Product product={product} />)}
+      <main>
+        <Header />
+        {renderContent()}
       </main>
     </div>
   );
