@@ -1,16 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { ErrorResponseType, ProductModelType } from "../../types";
 import { productsIndexService } from "../../services";
-import axios, { AxiosError } from "axios";
+import { normalizeAxiosError } from "./utils";
 
-// Define a type for the slice state
 interface ProductState {
   loading: boolean;
   fetchError?: ErrorResponseType;
   products: ProductModelType[];
 }
 
-// Define the initial state using that type
 const initialState: ProductState = {
   loading: false,
   products: [],
@@ -27,10 +25,7 @@ export const fetchProducts = createAsyncThunk<
     const response = await productsIndexService();
     return response.data;
   } catch (err) {
-    if(axios.isAxiosError(err) && err.response?.data){
-      return thunkAPI.rejectWithValue((err.response.data as ErrorResponseType));
-    }
-    return thunkAPI.rejectWithValue(err as ErrorResponseType);
+    return thunkAPI.rejectWithValue(normalizeAxiosError(err));
   }
 });
 

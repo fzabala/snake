@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./Home.page.scss";
-import { Header, Product, ProductGrid } from "../../components";
+import { Header, ProductGrid } from "../../components";
 import { fetchProducts, useAppDispatch, useAppSelector } from "../../store";
 
 export const HomePage = () => {
