@@ -10,8 +10,9 @@ function App() {
     {
       path: '/',
       component: <HomePage />,
+      title: 'Homepage',
       exact: true
-    },
+    }
   ];
 
   return (
@@ -23,7 +24,7 @@ function App() {
               {...route}
               key={index}
               element={
-                <Layout>{route.component}</Layout>
+                <Layout title={route.title}>{route.component}</Layout>
               }
             />
           ))
