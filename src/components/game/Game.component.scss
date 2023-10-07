@@ -1,0 +1,60 @@
+$cellSize: 3rem;
+
+.Game {
+  display: grid;
+  grid-template-columns: repeat(9, $cellSize);
+  grid-template-rows: repeat(9, $cellSize);
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  margin: 1rem auto;
+  justify-content: center;
+  align-content: center;
+  width: $cellSize * 9;
+
+  &-cell {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    font-size: 2.5rem;
+    font-size: $cellSize * .75;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    &--fixed {
+      background: var(--primary);
+      color: var(--primaryText);
+    }
+
+    &--selected {
+      background-color: var(--secondary);
+    }
+
+    &--error {
+      background-color: var(--errorLight);
+    }
+
+    &:nth-child(9n){
+      border-right: 2px solid black;
+    }
+
+    &:nth-child(3n + 1){
+      border-left: 3px solid black;
+    }
+
+    &:nth-child(n+1):nth-child(-n+9){
+      border-top: 3px solid black;
+    }
+
+    &:nth-child(n+19):nth-child(-n+27){
+      border-bottom: 2px solid black;
+    }
+
+    &:nth-child(n+46):nth-child(-n+54){
+      border-bottom: 2px solid black;
+    }
+
+    &:nth-child(n+73):nth-child(-n+81){
+      border-bottom: 2px solid black;
+    }
+  }
+}

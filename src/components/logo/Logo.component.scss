@@ -1,0 +1,21 @@
+.Logo {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem auto;
+  justify-content: center;
+  
+  &-letter{
+    width: 5rem;
+    height: 5rem;
+    color: white;
+    position: relative;
+    background: var(--primary);
+    color: var(--primaryText);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    font-weight: 700;
+    box-shadow: .5rem .5rem 0 var(--secondary);;
+  }
+}

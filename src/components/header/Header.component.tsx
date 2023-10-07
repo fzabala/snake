@@ -1,13 +1,11 @@
-import React from "react";
 import "./Header.component.scss";
+import { Logo } from "../logo";
 
 export const Header = () => {
 
   return (
     <div className="Header">
-      <div className="Header-info">
-        header info
-      </div>
+      <Logo text="SUDOKU" />
     </div>
   );
 };

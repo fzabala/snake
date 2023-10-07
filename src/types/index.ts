@@ -1,2 +1,3 @@
+export * from "./cell.type";
 export * from "./error-response.type";
-export * from "./product-model.type";
+export * from "./sudoku.type";
