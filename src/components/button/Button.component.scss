@@ -1,0 +1,21 @@
+.Button {
+    cursor: pointer;
+    background: var(--primary);
+    padding: .75em 1.5rem;
+    font-size: 1.25rem;
+    border: none;
+    color: var(--primaryText);
+    text-transform: uppercase;
+    font-weight: 700;
+    &-variant{
+      &--rounded {
+        border-radius: .5rem;
+      }
+      &--square {
+        border-radius: 0;
+      }
+    }
+    &:hover{
+        opacity: 0.8;
+    }
+  }

@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.scss';
 import { HomePage } from "./pages";
 import { Routes, Route } from 'react-router-dom';
@@ -24,7 +23,7 @@ function App() {
               {...route}
               key={index}
               element={
-                <Layout title={route.title}>{route.component}</Layout>
+                <Layout>{route.component}</Layout>
               }
             />
           ))

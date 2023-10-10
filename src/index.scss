@@ -1,5 +1,6 @@
 @import url('https://fonts.cdnfonts.com/css/creato-display');
 @import 'reset-css';
+@import './styles';
 
 body {
     margin: 0;
@@ -8,6 +9,9 @@ body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+    --primary: #{$primary};
+    --primaryText: #{$primaryText};
+    --gray: #{$gray};
 }
 
 code {

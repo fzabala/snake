@@ -1,13 +1,15 @@
 import React from "react";
+import { Header } from "../components";
 
 interface LayoutProps {
-  title: string,
   children: React.ReactNode;
 }
 
-export const Layout = ({ title, children }: LayoutProps) => {
+export const Layout = ({ children }: LayoutProps) => {
   return <div className="Layout">
-    <h1>{title}</h1>
-    {children}
-    </div>;
+    <Header />
+    <main>
+      {children}
+    </main>
+  </div>;
 };

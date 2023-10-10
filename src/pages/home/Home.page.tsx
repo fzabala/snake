@@ -1,45 +1,26 @@
-import React, { useEffect } from "react";
 import "./Home.page.scss";
-import { Header, ProductGrid } from "../../components";
-import { fetchProducts, useAppDispatch, useAppSelector } from "../../store";
+import { Button, CanvasGame } from "../../components";
+import { GAME_HEIGHT, GAME_WIDTH, GAME_LEVEL_EASY, GAME_LEVEL_MEDIUM, GAME_LEVEL_HARD, GAME_LEVEL_EXPERT } from "../../constants";
+import { GameLevelType } from "../../types";
+import { startGame, useAppDispatch, useAppSelector } from "../../store";
 
 export const HomePage = () => {
   const dispatch = useAppDispatch();
-
-  const { products, loading, fetchError } = useAppSelector(
-    (store) => store.product
-  );
-
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
-
-  const renderContent = () => {
-    if (fetchError) {
-      return <div className="ErrorWrapper">
-        <p>Error {fetchError.message}</p>
-          {fetchError.errors && <>
-          <p>Fields with errors</p>
-          <ul>
-            {fetchError.errors.map(e => <li key={`error-field-${e.field}`}>{e.field}: {e.message}</li>)}
-          </ul>
-          </>}
-        </div>;
-    }
-
-    if (loading) {
-      return <p>Loading</p>;
-    }
-
-    return <ProductGrid products={products} />;
-  };
+  const { isGameOver, level } = useAppSelector(store => store.snake);
+  const onClickLevelHandler = (level: GameLevelType) => {
+    dispatch(startGame(level));
+  }
 
   return (
     <div className="HomePage">
-      <main>
-        <Header />
-        {renderContent()}
-      </main>
+    {level && <CanvasGame width={GAME_WIDTH} height={GAME_HEIGHT} />}
+      {isGameOver && <p className="HomePage-alert">Game over</p>}
+      {(isGameOver || !level) && <div className="HomePage-buttons">
+        <Button onClick={() => onClickLevelHandler(GAME_LEVEL_EASY)}>EASY</Button>
+        <Button onClick={() => onClickLevelHandler(GAME_LEVEL_MEDIUM)}>MEDIUM</Button>
+        <Button onClick={() => onClickLevelHandler(GAME_LEVEL_HARD)}>HARD</Button>
+        <Button onClick={() => onClickLevelHandler(GAME_LEVEL_EXPERT)}>EXPERT</Button>
+      </div>}
     </div>
   );
 };

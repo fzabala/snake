@@ -1,3 +1,17 @@
 .HomePage {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
 
+    &-buttons{
+        display: flex;
+        gap: 1rem;
+    }
+    &-alert{
+        background: red;
+        padding: 1rem 2rem;
+        font-size: 3rem;
+        color: white;
+    }
 }

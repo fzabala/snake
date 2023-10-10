@@ -1,10 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import type { PreloadedState } from '@reduxjs/toolkit'
-import { productSlice } from './features';
+import { snakeSlice } from './features';
 
 // Create the root reducer separately so we can extract the RootState type
 const rootReducer = combineReducers({
-  product: productSlice.reducer,
+  snake: snakeSlice.reducer,
 })
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {

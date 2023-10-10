@@ -1,3 +1,4 @@
+export * from "./button";
+export * from "./canvas-game";
 export * from "./header";
-export * from "./product";
-export * from "./product-grid";
+export * from "./logo";
